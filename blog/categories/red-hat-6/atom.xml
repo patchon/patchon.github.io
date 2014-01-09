@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Red Hat 6 | blog.fridns.se]]></title>
+  <link href="http://patchon.github.io/blog/categories/red-hat-6/atom.xml" rel="self"/>
+  <link href="http://patchon.github.io/"/>
+  <updated>2014-01-09T18:59:55+01:00</updated>
+  <id>http://patchon.github.io/</id>
+  <author>
+    <name><![CDATA[Patrik Martinsson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Spotify in Red Hat 6]]></title>
+    <link href="http://patchon.github.io/blog/2011/06/30/spotify-in-red-hat-6/"/>
+    <updated>2011-06-30T21:10:35+02:00</updated>
+    <id>http://patchon.github.io/blog/2011/06/30/spotify-in-red-hat-6</id>
+    <content type="html"><![CDATA[<p><del>
+I&rsquo;ve packaged (and will probably make newer packages as newer builds arrive) the Spotify client for Red Hat Enterprise Linux 6. There is probably not a lot of &ldquo;private users&rdquo; using Rhel 6 Desktop, since it&rsquo;s more a corporate distribution, <b>but hey !</b> working people also want Spotify ;) The package should probably work on Fedora as well, however I leave no guarantees, if it doesn&rsquo;t, feel free to rebuild it. You can grab the spec-file <a href="http://blog.fridns.se/wp-content/uploads/2011/06/spotify.spec">here</a>. The package is built with Gnome-support and should integrate nicely with menus and Spotify url&rsquo;s.
+<a id="more"></a><a id="more-235"></a></del></p>
+
+<p><b>Edit 20140107, </b><br>
+* There is a better way nowdays, use the &ldquo;old method&rdquo; (the new method is only working in fedora atm) described <a href=http://community.spotify.com/t5/Help-Desktop-Linux-Mac-and/Linux-Fedora-RPM-package-for-F17-F19/m-p/237688#M8446>here</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Free Cache - drop_caches as nonroot]]></title>
+    <link href="http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot/"/>
+    <updated>2011-04-22T08:38:49+02:00</updated>
+    <id>http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot</id>
+    <content type="html"><![CDATA[<p>The other day I got a request from a developer at our company regarding drop_caches. You can read about what it is and why it could be useful <a href="http://linux-mm.org/Drop_Caches">here</a>, but to make it short, this person wanted to do some benchmarking and needed the page/inode/dentry cache to be freed. Since this is needed to be done by root, this caused a problem (developer is not root, our infrastructure setup doesn&rsquo;t allow our developers to be root atm). Although I came up with a pretty neet sudo rule that does the job,
+<a id="more"></a><a id="more-142"></a>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/sbin/sysctl -w vm.drop_caches<span class="o">=[</span>1-3<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Just put the above command in <b>/etc/sudoers</b> for affected users and they should be able to free page/inode/dentry cache as they wish.</p>
+
+<p>Keep it simple.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rhel 6 – Ananonda – ssl enabled repos]]></title>
+    <link href="http://patchon.github.io/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos/"/>
+    <updated>2011-01-09T13:24:44+01:00</updated>
+    <id>http://patchon.github.io/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos</id>
+    <content type="html"><![CDATA[<p>So it turns out that the Rhel6 image is missing libnsspem.so (a library used by curl to initialize nss as the ssl-engine) which breaks the ssl-validation in anaconda. This is normally not a problem, however if you for some reason have password-protected repository&rsquo;s and don&rsquo;t feel like sending your password in clear text over the network for every client/server you kickstart-install, this is going to be a problem.</p>
+
+<p>Luckily there is an easy fix for it &ndash; include the necessary library in the Rhel 6 install.img-file.</p>
+
+<!--more-->
+
+
+<p><code>bash
+sudo mkdir /foo /bar
+sudo mount -o loop path-to-rhel6-install.img /foo
+sudo cp -r /foo /bar
+sudo cp /usr/lib[arch]/libnsspem.so /bar/usr/lib[arch]
+sudo mksquashfs /bar install.img
+</code>
+Just replace the original install.img-file from the dvd-source with the one you just created and should be alright. The above steps would be made from an already installed Rhel 6 or atleast on a client with a libnsspem.so-file that is compatible with the version of nss Rhel 6 is running.</p>
+
+<p>You could probably copy the library over in the %pre section of the kickstart-file, but then you would have to figure out a way to either,</p>
+
+<p><b>1)</b> remount /usr/lib[arch] to writable (for placing the libnsspem.so in there), or<br>
+<b>2)</b> you would have to add the directory where you placed libnsspem.so to the LD_LIBRARY_PATH and then make anaconda use that.</p>
+
+<p><strong>Note</strong>, <br>This is beeing fixed for Rhel 6.1, see <a title="bugreport" href="https://bugzilla.redhat.com/show_bug.cgi?id=667122">bugreport</a> at Red Hat&rsquo;s bugzilla.</p>
+]]></content>
+  </entry>
+  
+</feed>

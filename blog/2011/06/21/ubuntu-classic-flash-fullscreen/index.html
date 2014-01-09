@@ -1,0 +1,260 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>Ubuntu Classic - Flash fullscreen  | blog.fridns.se</title>
+
+<meta name="author" content="Patrik Martinsson"> 
+
+<meta name="description" content="A personal blog to keep track of things."> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="blog.fridns.se" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">blog.fridns.se</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:patchon.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Ubuntu Classic - Flash Fullscreen</h2>
+	<div class="entry-content"><p>If you&rsquo;re using the &ldquo;Ubuntu Classic (No effects)&rdquo;-mode in the latest Ubuntu (11.04 as of writing) there is an annoying problem with playing fullscreen flash &ndash; <strong>it doesn&rsquo;t work.</strong> The picture will either freeze or get black, sound is still playing though, but there is <b>no way</b> you will get any fullscreen.</p>
+
+<!--more-->
+
+
+<p>It took me a couple of hours to find it, but the solution, once you know it, is quite simple &ndash; just enable &ldquo;legacy fullscreen&rdquo; in compiz.</p>
+
+<p>Simply install the &#8221;compizconfig-settings-manager&#8221;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install compizconfig-settings-manager
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Launch it, either by a terminal (/usr/bin/ccsm) or by,
+System <strong>=&gt;</strong> Preferences <strong>=&gt;</strong> &ldquo;CompizConfig Settings Manager&rdquo;</p>
+
+<p>Once in the application,
+Click on Utility <strong>=&gt;</strong> Workarounds <strong>=&gt;</strong> Check the &ldquo;Legacy Fullscreen Support&rdquo; option.</p>
+
+<p>Close &ldquo;CompizConfig Settings Manager&rdquo;,
+<b>=></b> log out,
+<b>=></b> log back in,
+and you <strong>should</strong> be able to watch flash in fullscreen.</p>
+
+<p><strong>Sidenote,</strong><br>
+Depending on which backend you use (normally gconf) the settings are stored as follows,</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># gconf, </span>
+</span><span class='line'><span class="nv">$HOME</span>/.gconf/apps/compizconfig-1/profiles/Default/plugins/workarounds/screen0/options/%gconf.xml
+</span><span class='line'>
+</span><span class='line'><span class="c"># ini, </span>
+</span><span class='line'><span class="nv">$HOME</span>/.config/compiz-1/compizconfig/Default.ini&lt;/blockquote&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><b>Update, 20110624</b><br>
+After playing with flash some more I find that this solution is not fully working. In fact the solution suggested above is incorrect (I have no idea why I thought it worked the first time &ndash; the problem seems to be random and flash just happened to worked when I activated &ldquo;Legace fullscreen support&rdquo;),  because when using &ldquo;Ubuntu Classic (no effects) you&rsquo;re not using compiz at all (which makes sense when you think about it) which in turns would make the compiz-options useless (read, since compiz is not used, the settings aren&rsquo;t either). <b>At least</b> that&rsquo;s how I think it is, if anyone have any better explanation, please share it in the comments below.</p>
+
+<p>After hours of fiddling with this I finally gave up, I thought I would give Ubunbu Classic a shot (using compiz that is) and flash actually now worked as expected (I tried with/without the &ldquo;Legacy fullscreen support&rdquo;, but I didn&rsquo;t noticed any differences so I decided to just leave the option on). The reason in the first place why I didn&rsquo;t want compiz and all the effects is because I think it clutters up my desktop, but with compizconfig-settings-manager you&rsquo;re able to disable most of them, so for now compiz is enabled &ndash; only so I can watch flash in fullscreen on various sites.</p>
+
+<p><b>Worth mentioning,</b><br></p>
+
+<ul>
+<li>When using Ubuntu Classic (No effects) I could get fullscreen to work <b>if</b> the browserwindow was not maximized. The video would then go fullscreen in the background (that is, behind the browserwindow) and as soon as I moved the mouse from the browserwindow to the fullscreen I would get a working fullscreen. However this is not a working solution for me.<br></li>
+<li>For some reason, now when I&rsquo;m playing with compizconfig-settings-manager the settings seem to be stored in <br></li>
+</ul>
+
+
+<p>$HOME/.gconf/apps/compiz-1/plugins/workarounds/screen0/options/%gconf.xml<br>
+instead of as I earlier thought <br>
+$HOME/.gconf/apps/compizconfig-1/profiles/Default/plugins/workarounds/screen0/options/%gconf.xml<br>
+Not really surewhats going on here though.</p>
+
+<p><b>Finally,</b><br>
+If you could get the sites below show flash in fullscreen with<br>
+&ndash; Ubuntu 11.04 in Classic Mode (No Effects),<br>
+&ndash; Google Chrome, <br>
+&ndash; Native 64 Flash plugin (square) <br>
+&ndash; on an ION2-based platform, <br>
+please tell me how you did it. <br></p>
+
+<p><a href=http://www.break.com/>&ndash; <a href="http://www.break.com">http://www.break.com</a></a><br>
+<a href=http://www.imdb.com/>&ndash; <a href="http://www.imdb.com">http://www.imdb.com</a></a><br>
+<a href=http://www.dump.com/>&ndash; <a href="http://www.dump.com">http://www.dump.com</a></a><br>
+<a href=http://www.youtube.com/>&ndash; <a href="http://www.youtube.com">http://www.youtube.com</a></a><br>
+<a href=http://www.ted.com/>&ndash; <a href="http://www.ted.com">http://www.ted.com</a></a><br>
+<a href=http://www.wimp.com/>&ndash; <a href="http://www.wimp.com">http://www.wimp.com</a></a><br>
+<a href=http://www.sf.se/>&ndash; <a href="http://www.sf.se/">http://www.sf.se/</a></a><br></p>
+
+<p><b>Update, 20110625</b><br>
+Disabling &ldquo;Legacy fullscreen support&rdquo; since it seems to break xbmc&rsquo;s &ldquo;quick fullscreen switching&rdquo; (<b>alt+backslash</b>).
+<b>This is ridiculous. </b></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-21T23:17:36+02:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/others/'>Others</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2011/06/21/ubuntu-classic-flash-fullscreen/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Patrik Martinsson
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'fridns';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+</body>
+</html>

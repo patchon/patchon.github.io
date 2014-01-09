@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Fedora 14 | blog.fridns.se]]></title>
+  <link href="http://patchon.github.io/blog/categories/fedora-14/atom.xml" rel="self"/>
+  <link href="http://patchon.github.io/"/>
+  <updated>2014-01-09T18:59:55+01:00</updated>
+  <id>http://patchon.github.io/</id>
+  <author>
+    <name><![CDATA[Patrik Martinsson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Free Cache - drop_caches as nonroot]]></title>
+    <link href="http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot/"/>
+    <updated>2011-04-22T08:38:49+02:00</updated>
+    <id>http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot</id>
+    <content type="html"><![CDATA[<p>The other day I got a request from a developer at our company regarding drop_caches. You can read about what it is and why it could be useful <a href="http://linux-mm.org/Drop_Caches">here</a>, but to make it short, this person wanted to do some benchmarking and needed the page/inode/dentry cache to be freed. Since this is needed to be done by root, this caused a problem (developer is not root, our infrastructure setup doesn&rsquo;t allow our developers to be root atm). Although I came up with a pretty neet sudo rule that does the job,
+<a id="more"></a><a id="more-142"></a>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/sbin/sysctl -w vm.drop_caches<span class="o">=[</span>1-3<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Just put the above command in <b>/etc/sudoers</b> for affected users and they should be able to free page/inode/dentry cache as they wish.</p>
+
+<p>Keep it simple.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fedora 14 – Flashplayer weird sound issue]]></title>
+    <link href="http://patchon.github.io/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue/"/>
+    <updated>2011-01-21T02:48:20+01:00</updated>
+    <id>http://patchon.github.io/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue</id>
+    <content type="html"><![CDATA[<p>There is a really annoying problem with the flashplayer in Fedora 14 when it comes to playing flashvideos with mp3&rsquo;s in them. You will hear this kind of clipping/high pitched sound which is really unbearable. Luckily there is a quite easy solution, download <a href="https://bugzilla.redhat.com/attachment.cgi?id=460254">this script</a> (Ray Strode, Red Hat) and apply it to your libflashplayer.so, <!--more-->something like</p>
+
+<p><code>bash
+wget https://bugzilla.redhat.com/attachment.cgi?id=460254 -O libflashplayerpatch.sh
+sudo sh libflashplayerpatch.sh  /usr/lib64/flash-plugin/libflashplayer.so
+sudo chmod 644 /usr/lib64/flash-plugin/libflashplayer.so
+</code>
+will do the trick. It may take a couple of minutes to finish depending on your computer. While the script is running you will se alot of lines like,
+<code>bash
+Changing call at offset 0x7c1d64 from [60 c1 8f ff] to [50 bf 8f ff]
+Changing call at offset 0x7c9b3f from [85 43 8f ff] to [75 41 8f ff]
+Changing call at offset 0x7c9b5c from [68 43 8f ff] to [58 41 8f ff]
+Changing call at offset 0x7ca0bb from [09 3e 8f ff] to [f9 3b 8f ff]
+</code></p>
+
+<p>I don&rsquo;t know if the chmod 644 line is really neccecary, although on my system the libflashplayer.so got 600 after running the script which means that no one, except root, will be able to use the plugin. Other than that it should be all good.</p>
+
+<p>Enjoy!</p>
+
+<p><strong>For the curious reader : </strong> It&rsquo;s a recent change in memcpy() in glibc that made libflashplayer break. Although the bug was introduced by this change, the actual bug lies in how Adobe implements memcpy(), rather then in glibc. You can read a more detailed explanation <a href="https://bugzilla.redhat.com/show_bug.cgi?id=638477#c31">here</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fedora 14 – AR8152 Ethernet Controller]]></title>
+    <link href="http://patchon.github.io/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2/"/>
+    <updated>2011-01-02T18:53:14+01:00</updated>
+    <id>http://patchon.github.io/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2</id>
+    <content type="html"><![CDATA[<p>If you have a Asus 1215n with the AR8152 Ethernet controller chip you may have noticed that it doesn&rsquo;t work right out of the box, although thanks to this <a href="http://rhythmcloud.blogspot.com/2010/07/how-to-install-ar8151-v10-gigabit.html">blog</a> I managed to get it working. You will notice that the instructions from the blog just mentioned are for fedora 13, and unfortunately there are some differences in the kernel between the releases (2.6.32 &ndash; 2.6.35) that will make the compilation of the driver fail. I&rsquo;ve created a small patch that takes care of this issue, but I leave no guarantees, you&rsquo;re on your own if it doesn&rsquo;t work.</p>
+
+<!--more-->
+
+
+<p>Just follow the steps on the blog until you reach step 6, download my <a href="http://blog.fridns.se/wp-content/uploads/2011/01/experimental.patch">patch</a>, and put it in the directory where driver is extracted is extracted, then apply it with following command,
+<code>bash
+patch -p1 &lt; experimental.patch
+</code>
+I also noticed people were asking questions about how to handle this at kernel upgrades, and if they needed to do it all over again, and the answer is actually no. You should not need to redo all this when your system is upgraded with a new kernel, it used to be like that, but now days there is a cool feature called dkms (dynamic kernel module support) which is suppose to take care of this for you. I&rsquo;m not really that familiar with this since I&rsquo;m used with my stuff working out of the box, but from what I understand you will add a module with the dkms-command, and later when a kernel upgrade is made, the module will automagically be compiled for the new kernel. Since the guys at Atheros were so nice that they prepared the Makefile for this, the only thing you should need to do to get this working is,
+<code>bash
+sudo yum install -y dkms
+sudo make dkms
+</code>
+and make should take care of it (it seems, at least for me, that the  rpmbuild commands returns a nonzero value when exiting, which usually means there is an error, thus making &lsquo;make&rsquo; thinks it failed, however, the rpm&rsquo;s are there and I think they are just fine, but I&rsquo;ll find that  out at the next kernelupgrade).</p>
+
+<p>For the curious reader, patch will do following,</p>
+
+<ul>
+    <li>use the netdev_for_each_mc_addr function to get addresses for the device (as of 2.6.34 this is the way to do it).</li>
+    <li>disable the check for which kernel we are running (rather then fixing it).</li>
+    <li>change the dkms-command so it builds an rpm instead of a Debian package.</li>
+</ul>
+
+
+<p>Enjoy !</p>
+]]></content>
+  </entry>
+  
+</feed>

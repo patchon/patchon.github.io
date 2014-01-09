@@ -1,23 +1,83 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>
+            http://patchon.github.io/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare/
+        </loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://patchon.github.io/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2/
+        </loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2011/01/13/letter-to-scm-microsystems-2/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://patchon.github.io/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue/
+        </loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://patchon.github.io/blog/2011/06/19/spotify-linux-now-with-pulseaudio-support/
+        </loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2011/06/21/ubuntu-classic-flash-fullscreen/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2011/06/27/disable-sound-in-gdm-ubuntu-11-04/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2011/06/30/spotify-in-red-hat-6/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2011/08/08/smplayer-subtitles-errror/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/blog/2014/01/08/test/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://patchon.github.io/archives/</loc>
-        <lastmod>2014-01-05T23:07:05+01:00</lastmod>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
     </url>
     <url>
         <loc>http://patchon.github.io/blog/archives/</loc>
-        <lastmod>2014-01-05T23:07:05+01:00</lastmod>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
     </url>
     <url>
         <loc>http://patchon.github.io/blog/</loc>
-        <lastmod>2014-01-05T23:07:05+01:00</lastmod>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
     </url>
     <url>
         <loc>http://patchon.github.io/</loc>
-        <lastmod>2014-01-05T23:07:05+01:00</lastmod>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
     </url>
     <url>
         <loc>http://patchon.github.io/robots.txt</loc>
-        <lastmod>2014-01-05T23:07:05+01:00</lastmod>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://patchon.github.io/about/</loc>
+        <lastmod>2014-01-09T18:59:53+01:00</lastmod>
     </url>
 </urlset>

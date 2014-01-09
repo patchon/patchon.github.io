@@ -1,0 +1,188 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>Letter to SCM Microsystems  | blog.fridns.se</title>
+
+<meta name="author" content="Patrik Martinsson"> 
+
+<meta name="description" content="A personal blog to keep track of things."> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="blog.fridns.se" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">blog.fridns.se</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:patchon.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Letter to SCM Microsystems</h2>
+	<div class="entry-content"><p>Figure I would share a letter I wrote to the SCM Microsystem regarding their smart card chipsets, that I believe is found in some of the HP EliteBook models (this is not confirmed, but according to a letter written by HP to a customer, it seems that way, <a href="http://ubuntuforums.org/showthread.php?t=1628040">source</a>) .<a id="more"></a><a id="more-5"></a></p>
+
+<blockquote><p>Hello,<br/>My name is Patrik Martinsson and I&#8217;m currently working as a system administrator at a government funded meteorological institute in Sweden.</p><p>We have a lot of &#8220;Linux-desktop-clients&#8221; in our company (around 1/5 of the employees choose Linux, at least to us that a lot ).</p><p>Somewhere around 2009 we started to use smart card on all our clients to authenticate ourselves, this was a bit of a hassle to get working on the Linux side, but we finally got the clients working as we wanted, with one exception, the internal smart card readers just wouldn&#8217;t work (sadly to say, I wasn&#8217;t that surprised). There was no way to get them working, mostly because we couldn&#8217;t identify them, nobody could really, not even HP support when I called them (not the people I spoke to anyway). So we started to buy &#8220;external&#8221; pcmcia card readers for our Linux users, which was an acceptable solution, not preferred in any way, but acceptable.</p><p>Anyway, today a college of mine stumbled over a letter from HP to a customer that indicates that their models (at least one of them, EliteBook 2540p) has the scr241 chip, and that it is possible to use your kernelmodule (with a small modification, adding their, HP, pcmcia_decvice_prod_id, so your module will recognize it, I&#8217;m not a developer, so please correct me if I&#8217;m wrong) on atleast, HP EliteBook 2540p (my guess is that your chip is other HP models too), to get the internal smart card reader to work.</p><p>Sadly to say, you only have this scr241 driver for Linux available for 32-bit architectures, which to me is a shame, and also a bit surprising, since I noticed that you have all the Windows drivers for both 32 and 64-architectures.</p><p>So, what I ask, and what I really really need from you is your, proprietary driver for the scr241 chip, compiled for a 64 bit architecture (libSCR24x.so.4.2.1), I don&#8217;t ask for any support or anything like that on the driver, I just need it to work on 64-bit architectures so I can test whether we can get our internal readers to work.</p><p>Please, I&#8217;m asking you as a developer to help a sysadmin out!</p><p>Best regards,<br/>Patrik Martinsson</p></blockquote>
+
+
+<p></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-28T18:55:36+01:00" pubdate data-updated="true">Dec 28<span>th</span>, 2010</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/hp-internal-smartcard-reader/'>Hp internal smartcard reader</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Patrik Martinsson
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'fridns';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+</body>
+</html>

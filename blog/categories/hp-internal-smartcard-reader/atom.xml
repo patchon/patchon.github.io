@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hp internal smartcard reader | blog.fridns.se]]></title>
+  <link href="http://patchon.github.io/blog/categories/hp-internal-smartcard-reader/atom.xml" rel="self"/>
+  <link href="http://patchon.github.io/"/>
+  <updated>2014-01-09T18:59:55+01:00</updated>
+  <id>http://patchon.github.io/</id>
+  <author>
+    <name><![CDATA[Patrik Martinsson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Letter to SCM Microsystems #2]]></title>
+    <link href="http://patchon.github.io/blog/2011/01/13/letter-to-scm-microsystems-2/"/>
+    <updated>2011-01-13T04:24:03+01:00</updated>
+    <id>http://patchon.github.io/blog/2011/01/13/letter-to-scm-microsystems-2</id>
+    <content type="html"><![CDATA[<p>It took a couple of days, but SCM Microsystems did actually answer my <a href="http://blog.fridns.se/?p=5">email</a>, although it was very unsatisfying. It&rsquo;s actually so bad that when you read it you get kind of angry because of their incompetence in this matter.<!--more-->
+<blockquote><p>Dear Mr. Martinsson,</p></p><p><p>The reader that is in the Laptop is an OEM product. You need to contact<br/>HP for further information.</p></blockquote>
+So, I wrote them a new mail, explaining that this had nothing to do with HP or any manufacturer for that matter, hoping that someone with some knowledge would answer me.
+<blockquote><p>Hello again,</p></p><p><p>Thank you for taking your time to answer, even though I find the answer<br/>very short and incomplete.</p></p><p><p>Forget my laptop and that it&rsquo;s an OEM product, it has nothing to do with<br/>HP (or any vendor for that matter),  what I&rsquo;m asking you is to make the<br/>SCR241 driver for Linux available to both 32bit and 64bit-architectures.<br/>You have both architectures for all the Windows-versions, so I don&rsquo;t see<br/>any reason why you wouldn&rsquo;t have the same for your Linux-driver. It&rsquo;s a<br/>fact that people today uses 64 bit Operating Systems, not only on the<br/>Windows side.</p></p><p><p>Another note is that the Linuxdriver will only work with kernels &lt;2.35,<br/>because of some changes in the pcmcia structure in the kernel, so I&rsquo;m<br/>sure people would appreciate if you updated your driver so it would work<br/>on newer kernels to.</p></p><p><p>Don&rsquo;t just dismiss my letter and give me a short answer, I would like to<br/>see this happen, even if you do deny the request I would like to see the<br/>discussion behind it.</p></p><p><p>Best regards,<br/>Patrik Martinsson,</p></blockquote></p>
+
+<p>A few days later I got an answer, not the answer I was hoping for, but still a reasonable answer.
+<blockquote><p></p></p><p><p>Dear Mr. Martinsson,</p></p><p><p>Sorry for the way your problem has been handled so far.</p></p><p><p>Unfortunately, it really is such, that we do not have a driver for 64bit<br/>Linux systems.</p></p><p><p>This is mostly due to the fact that the demand for such a driver has<br/>been merely inexistent till today.<br/>The other issue, the one with the kernel version, is sure enough<br/>something we should look into correcting.<br/>I brought this to the attention of development some time ago and they&rsquo;re<br/>currently evaluating the resources it would take to update the driver.<br/>As soon as a resource is located, the update will commence. I will put<br/>some more weight on the necessity of having a 64 bit driver in these<br/>days of machines with more than 4GB of RAM.<br/>Once I have some information on estimated time frame and kind of update<br/>from development, I will let you know.</p></blockquote></p>
+
+<p>I guess that&rsquo;s the end for now.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Letter to SCM Microsystems]]></title>
+    <link href="http://patchon.github.io/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare/"/>
+    <updated>2010-12-28T18:55:36+01:00</updated>
+    <id>http://patchon.github.io/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare</id>
+    <content type="html"><![CDATA[<p>Figure I would share a letter I wrote to the SCM Microsystem regarding their smart card chipsets, that I believe is found in some of the HP EliteBook models (this is not confirmed, but according to a letter written by HP to a customer, it seems that way, <a href="http://ubuntuforums.org/showthread.php?t=1628040">source</a>) .<a id="more"></a><a id="more-5"></a>
+<blockquote><p>Hello,<br/>My name is Patrik Martinsson and I&rsquo;m currently working as a system administrator at a government funded meteorological institute in Sweden.</p></p><p><p>We have a lot of &ldquo;Linux-desktop-clients&rdquo; in our company (around 1/5 of the employees choose Linux, at least to us that a lot ).</p></p><p><p>Somewhere around 2009 we started to use smart card on all our clients to authenticate ourselves, this was a bit of a hassle to get working on the Linux side, but we finally got the clients working as we wanted, with one exception, the internal smart card readers just wouldn&rsquo;t work (sadly to say, I wasn&rsquo;t that surprised). There was no way to get them working, mostly because we couldn&rsquo;t identify them, nobody could really, not even HP support when I called them (not the people I spoke to anyway). So we started to buy &ldquo;external&rdquo; pcmcia card readers for our Linux users, which was an acceptable solution, not preferred in any way, but acceptable.</p></p><p><p>Anyway, today a college of mine stumbled over a letter from HP to a customer that indicates that their models (at least one of them, EliteBook 2540p) has the scr241 chip, and that it is possible to use your kernelmodule (with a small modification, adding their, HP, pcmcia_decvice_prod_id, so your module will recognize it, I&rsquo;m not a developer, so please correct me if I&rsquo;m wrong) on atleast, HP EliteBook 2540p (my guess is that your chip is other HP models too), to get the internal smart card reader to work.</p></p><p><p>Sadly to say, you only have this scr241 driver for Linux available for 32-bit architectures, which to me is a shame, and also a bit surprising, since I noticed that you have all the Windows drivers for both 32 and 64-architectures.</p></p><p><p>So, what I ask, and what I really really need from you is your, proprietary driver for the scr241 chip, compiled for a 64 bit architecture (libSCR24x.so.4.2.1), I don&rsquo;t ask for any support or anything like that on the driver, I just need it to work on 64-bit architectures so I can test whether we can get our internal readers to work.</p></p><p><p>Please, I&rsquo;m asking you as a developer to help a sysadmin out!</p></p><p><p>Best regards,<br/>Patrik Martinsson</p></blockquote></p>
+]]></content>
+  </entry>
+  
+</feed>
