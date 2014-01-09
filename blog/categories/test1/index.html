@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Fedora 14 – AR8152 Ethernet Controller - blog.fridns.se</title>
+  <title>Category: test1 - blog.fridns.se</title>
   <meta name="author" content="Patrik Martinsson">
 
   
-  <meta name="description" content="If you have a Asus 1215n with the AR8152 Ethernet controller chip you may have noticed that it doesn&rsquo;t work right out of the box, although &hellip;">
+  <meta name="description" content="Category: test1">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.fridns.se/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2">
+  <link rel="canonical" href="http://blog.fridns.seblog/categories/test1">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="blog.fridns.se" type="application/atom+xml">
@@ -64,123 +64,30 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Fedora 14 – AR8152 Ethernet Controller</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-02T18:53:14+01:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2011</time>
-        
-         | <a href="#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: Test1</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>If you have a Asus 1215n with the AR8152 Ethernet controller chip you may have noticed that it doesn&rsquo;t work right out of the box, although thanks to this <a href="http://rhythmcloud.blogspot.com/2010/07/how-to-install-ar8151-v10-gigabit.html">blog</a> I managed to get it working. You will notice that the instructions from the blog just mentioned are for fedora 13, and unfortunately there are some differences in the kernel between the releases (2.6.32 &ndash; 2.6.35) that will make the compilation of the driver fail. I&rsquo;ve created a small patch that takes care of this issue, but I leave no guarantees, you&rsquo;re on your own if it doesn&rsquo;t work.</p>
 
-<!--more-->
+  
+  <h2>2014</h2>
 
+<article>
+  
+<time datetime="2014-01-08T23:03:21+01:00" pubdate><span class='month'>Jan</span> <span class='day'>08</span> <span class='year'>2014</span>, posted in - <a class='category' href='/blog/categories/test1/'>test1</a>, <a class='category' href='/blog/categories/test2/'>test2</a></time>
+<h1><a href="/blog/2014/01/08/test/">Test</a></h1>
 
-<p>Just follow the steps on the blog until you reach step 6, download my <a href="http://blog.fridns.se/wp-content/uploads/2011/01/experimental.patch">patch</a>, and put it in the directory where driver is extracted is extracted, then apply it with following command,</p>
+</article>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>patch -p1 &lt; experimental.patch
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-I also noticed people were asking questions about how to handle this at kernel upgrades, and if they needed to do it all over again, and the answer is actually no. You should not need to redo all this when your system is upgraded with a new kernel, it used to be like that, but now days there is a cool feature called dkms (dynamic kernel module support) which is suppose to take care of this for you. I&rsquo;m not really that familiar with this since I&rsquo;m used with my stuff working out of the box, but from what I understand you will add a module with the dkms-command, and later when a kernel upgrade is made, the module will automagically be compiled for the new kernel. Since the guys at Atheros were so nice that they prepared the Makefile for this, the only thing you should need to do to get this working is,</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install -y dkms
-</span><span class='line'>sudo make dkms
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and make should take care of it (it seems, at least for me, that the  rpmbuild commands returns a nonzero value when exiting, which usually means there is an error, thus making &lsquo;make&rsquo; thinks it failed, however, the rpm&rsquo;s are there and I think they are just fine, but I&rsquo;ll find that  out at the next kernelupgrade).</p>
-
-<p>For the curious reader, patch will do following,</p>
-
-<ul>
-    <li>use the netdev_for_each_mc_addr function to get addresses for the device (as of 2.6.34 this is the way to do it).</li>
-    <li>disable the check for which kernel we are running (rather then fixing it).</li>
-    <li>change the dkms-command so it builds an rpm instead of a Debian package.</li>
-</ul>
-
-
-<p>Enjoy !</p>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Patrik Martinsson</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-02T18:53:14+01:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2011</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/fedora-14/'>Fedora 14</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare/" title="Previous Post: Letter to SCM Microsystems">&laquo; Letter to SCM Microsystems</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos/" title="Next Post: Rhel 6 – Ananonda – ssl enabled repos">Rhel 6 – Ananonda – ssl enabled repos &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 
