@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://patchon.github.io/sitemap.xml 
+Sitemap: http://blog.fridns.se/sitemap.xml 

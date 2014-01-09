@@ -3,15 +3,9 @@
 
 
 /* TEAM */
-  Owner: Adrian Artiles
-  Site: http://AdrianArtiles.com
-  Twitter: @AdrianArtiles
-
-  UX Designer: Adrian Artiles
-  Site: http://AdrianArtiles.com
-  Twitter: @AdrianArtiles
+  Owner: Patrik Martinsson
+  Site: http://blog.fridns.se
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: Modernizr, jQuery
   Software: Vim

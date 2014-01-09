@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[blog.fridns.se]]></title>
-  <link href="http://patchon.github.io/atom.xml" rel="self"/>
-  <link href="http://patchon.github.io/"/>
-  <updated>2014-01-09T18:59:55+01:00</updated>
-  <id>http://patchon.github.io/</id>
+  <link href="http://blog.fridns.se/atom.xml" rel="self"/>
+  <link href="http://blog.fridns.se/"/>
+  <updated>2014-01-09T19:35:01+01:00</updated>
+  <id>http://blog.fridns.se/</id>
   <author>
     <name><![CDATA[Patrik Martinsson]]></name>
     
@@ -15,18 +15,18 @@
   
   <entry>
     <title type="html"><![CDATA[test]]></title>
-    <link href="http://patchon.github.io/blog/2014/01/08/test/"/>
+    <link href="http://blog.fridns.se/blog/2014/01/08/test/"/>
     <updated>2014-01-08T23:03:21+01:00</updated>
-    <id>http://patchon.github.io/blog/2014/01/08/test</id>
+    <id>http://blog.fridns.se/blog/2014/01/08/test</id>
     <content type="html"><![CDATA[<p>hej hopp kalle</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[smplayer subtitles errror]]></title>
-    <link href="http://patchon.github.io/blog/2011/08/08/smplayer-subtitles-errror/"/>
+    <link href="http://blog.fridns.se/blog/2011/08/08/smplayer-subtitles-errror/"/>
     <updated>2011-08-08T23:44:14+02:00</updated>
-    <id>http://patchon.github.io/blog/2011/08/08/smplayer-subtitles-errror</id>
+    <id>http://blog.fridns.se/blog/2011/08/08/smplayer-subtitles-errror</id>
     <content type="html"><![CDATA[<p>Lately (or actually since way back, I&rsquo;ve just started to notice it a bit more nowdays) I&rsquo;ve been getting this annoying error when downloading subtitles from <a href="http://opensubtitles.org">opensubtitles.org</a>, smplayer finds the subtitle and starts to download it, but fails at random points during the download and throws the error &ldquo;failed to download subtitle&rdquo;. Today I set out to fix this annoying problem &ndash; however, it didn&rsquo;t take me long to find out that there actually was a bugreport on this, <b>and</b> that the bug also been fixed in later svn-revisions.
 <del>I checked out the latest source (3614 as of writing) and built the packages for Ubuntu 10.04/11.04, feel free to grab them them <a href="http://blog.fridns.se/wp-content/uploads/2011/08/smplayer_0.6.9-SVN-r3614_amd64.deb">here</a> (10.04) and <a href="http://blog.fridns.se/wp-content/uploads/2011/08/smplayer_0.6.9-SVN-r3614_11.04_amd64.deb">here</a>(11.04).
 Once downloaded, just install them with dpkg,
@@ -36,9 +36,9 @@ Once downloaded, just install them with dpkg,
   
   <entry>
     <title type="html"><![CDATA[Spotify in Red Hat 6]]></title>
-    <link href="http://patchon.github.io/blog/2011/06/30/spotify-in-red-hat-6/"/>
+    <link href="http://blog.fridns.se/blog/2011/06/30/spotify-in-red-hat-6/"/>
     <updated>2011-06-30T21:10:35+02:00</updated>
-    <id>http://patchon.github.io/blog/2011/06/30/spotify-in-red-hat-6</id>
+    <id>http://blog.fridns.se/blog/2011/06/30/spotify-in-red-hat-6</id>
     <content type="html"><![CDATA[<p><del>
 I&rsquo;ve packaged (and will probably make newer packages as newer builds arrive) the Spotify client for Red Hat Enterprise Linux 6. There is probably not a lot of &ldquo;private users&rdquo; using Rhel 6 Desktop, since it&rsquo;s more a corporate distribution, <b>but hey !</b> working people also want Spotify ;) The package should probably work on Fedora as well, however I leave no guarantees, if it doesn&rsquo;t, feel free to rebuild it. You can grab the spec-file <a href="http://blog.fridns.se/wp-content/uploads/2011/06/spotify.spec">here</a>. The package is built with Gnome-support and should integrate nicely with menus and Spotify url&rsquo;s.
 <a id="more"></a><a id="more-235"></a></del></p>
@@ -50,9 +50,9 @@ I&rsquo;ve packaged (and will probably make newer packages as newer builds arriv
   
   <entry>
     <title type="html"><![CDATA[Disable sound in gdm - Ubuntu 11.04]]></title>
-    <link href="http://patchon.github.io/blog/2011/06/27/disable-sound-in-gdm-ubuntu-11-04/"/>
+    <link href="http://blog.fridns.se/blog/2011/06/27/disable-sound-in-gdm-ubuntu-11-04/"/>
     <updated>2011-06-27T08:42:51+02:00</updated>
-    <id>http://patchon.github.io/blog/2011/06/27/disable-sound-in-gdm-ubuntu-11-04</id>
+    <id>http://blog.fridns.se/blog/2011/06/27/disable-sound-in-gdm-ubuntu-11-04</id>
     <content type="html"><![CDATA[<p>There is a very annoying sound (a drumroll) at the login of Ubuntu 11.04 (I think it applies to earlier version to, although this method of disabling it does not, it should however work on Fedora 15). There is a gui (System/Administration/Login Screen) for making this happen, although it seems rather broken (read about it <a href=http://askubuntu.com/questions/24946/how-do-i-disable-the-drum-beat-sound-on-the-login-screen>here</a>). Nowadays dconf (gsettings is the api) is used as backend rather then gconf, although not all applications has adapted this, gdm has.
 <a id="more"></a><a id="more-233"></a></p>
 
@@ -98,9 +98,9 @@ I&rsquo;ve packaged (and will probably make newer packages as newer builds arriv
   
   <entry>
     <title type="html"><![CDATA[Ubuntu Classic - Flash fullscreen]]></title>
-    <link href="http://patchon.github.io/blog/2011/06/21/ubuntu-classic-flash-fullscreen/"/>
+    <link href="http://blog.fridns.se/blog/2011/06/21/ubuntu-classic-flash-fullscreen/"/>
     <updated>2011-06-21T23:17:36+02:00</updated>
-    <id>http://patchon.github.io/blog/2011/06/21/ubuntu-classic-flash-fullscreen</id>
+    <id>http://blog.fridns.se/blog/2011/06/21/ubuntu-classic-flash-fullscreen</id>
     <content type="html"><![CDATA[<p>If you&rsquo;re using the &ldquo;Ubuntu Classic (No effects)&rdquo;-mode in the latest Ubuntu (11.04 as of writing) there is an annoying problem with playing fullscreen flash &ndash; <strong>it doesn&rsquo;t work.</strong> The picture will either freeze or get black, sound is still playing though, but there is <b>no way</b> you will get any fullscreen.</p>
 
 <!--more-->
@@ -184,9 +184,9 @@ Disabling &ldquo;Legacy fullscreen support&rdquo; since it seems to break xbmc&r
   
   <entry>
     <title type="html"><![CDATA[Spotify Linux - Now with PulseAudio support. ]]></title>
-    <link href="http://patchon.github.io/blog/2011/06/19/spotify-linux-now-with-pulseaudio-support/"/>
+    <link href="http://blog.fridns.se/blog/2011/06/19/spotify-linux-now-with-pulseaudio-support/"/>
     <updated>2011-06-19T19:32:36+02:00</updated>
-    <id>http://patchon.github.io/blog/2011/06/19/spotify-linux-now-with-pulseaudio-support</id>
+    <id>http://blog.fridns.se/blog/2011/06/19/spotify-linux-now-with-pulseaudio-support</id>
     <content type="html"><![CDATA[<p>If you&rsquo;re a Linux user and a paying customer to the great <a href="http://www.spotify.com/se/">Spotify-service</a> you nowdays have a native <a href="http://www.spotify.com/se/download/previews/">functional client</a>,</p>
 
 <ul>
@@ -221,9 +221,9 @@ Disabling &ldquo;Legacy fullscreen support&rdquo; since it seems to break xbmc&r
   
   <entry>
     <title type="html"><![CDATA[Free Cache - drop_caches as nonroot]]></title>
-    <link href="http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot/"/>
+    <link href="http://blog.fridns.se/blog/2011/04/22/drop_caches-as-nonroot/"/>
     <updated>2011-04-22T08:38:49+02:00</updated>
-    <id>http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot</id>
+    <id>http://blog.fridns.se/blog/2011/04/22/drop_caches-as-nonroot</id>
     <content type="html"><![CDATA[<p>The other day I got a request from a developer at our company regarding drop_caches. You can read about what it is and why it could be useful <a href="http://linux-mm.org/Drop_Caches">here</a>, but to make it short, this person wanted to do some benchmarking and needed the page/inode/dentry cache to be freed. Since this is needed to be done by root, this caused a problem (developer is not root, our infrastructure setup doesn&rsquo;t allow our developers to be root atm). Although I came up with a pretty neet sudo rule that does the job,
 <a id="more"></a><a id="more-142"></a></p>
 
@@ -240,9 +240,9 @@ Disabling &ldquo;Legacy fullscreen support&rdquo; since it seems to break xbmc&r
   
   <entry>
     <title type="html"><![CDATA[Fedora 14 – Flashplayer weird sound issue]]></title>
-    <link href="http://patchon.github.io/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue/"/>
+    <link href="http://blog.fridns.se/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue/"/>
     <updated>2011-01-21T02:48:20+01:00</updated>
-    <id>http://patchon.github.io/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue</id>
+    <id>http://blog.fridns.se/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue</id>
     <content type="html"><![CDATA[<p>There is a really annoying problem with the flashplayer in Fedora 14 when it comes to playing flashvideos with mp3&rsquo;s in them. You will hear this kind of clipping/high pitched sound which is really unbearable. Luckily there is a quite easy solution, download <a href="https://bugzilla.redhat.com/attachment.cgi?id=460254">this script</a> (Ray Strode, Red Hat) and apply it to your libflashplayer.so, <!--more-->something like</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -277,9 +277,9 @@ Disabling &ldquo;Legacy fullscreen support&rdquo; since it seems to break xbmc&r
   
   <entry>
     <title type="html"><![CDATA[Letter to SCM Microsystems #2]]></title>
-    <link href="http://patchon.github.io/blog/2011/01/13/letter-to-scm-microsystems-2/"/>
+    <link href="http://blog.fridns.se/blog/2011/01/13/letter-to-scm-microsystems-2/"/>
     <updated>2011-01-13T04:24:03+01:00</updated>
-    <id>http://patchon.github.io/blog/2011/01/13/letter-to-scm-microsystems-2</id>
+    <id>http://blog.fridns.se/blog/2011/01/13/letter-to-scm-microsystems-2</id>
     <content type="html"><![CDATA[<p>It took a couple of days, but SCM Microsystems did actually answer my <a href="http://blog.fridns.se/?p=5">email</a>, although it was very unsatisfying. It&rsquo;s actually so bad that when you read it you get kind of angry because of their incompetence in this matter.<!--more--></p>
 
 <blockquote><p>Dear Mr. Martinsson,</p><p>The reader that is in the Laptop is an OEM product. You need to contact<br/>HP for further information.</p></blockquote>
@@ -301,9 +301,9 @@ Disabling &ldquo;Legacy fullscreen support&rdquo; since it seems to break xbmc&r
   
   <entry>
     <title type="html"><![CDATA[Rhel 6 – Ananonda – ssl enabled repos]]></title>
-    <link href="http://patchon.github.io/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos/"/>
+    <link href="http://blog.fridns.se/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos/"/>
     <updated>2011-01-09T13:24:44+01:00</updated>
-    <id>http://patchon.github.io/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos</id>
+    <id>http://blog.fridns.se/blog/2011/01/09/rhel-6-ananonda-ssl-enabled-repos</id>
     <content type="html"><![CDATA[<p>So it turns out that the Rhel6 image is missing libnsspem.so (a library used by curl to initialize nss as the ssl-engine) which breaks the ssl-validation in anaconda. This is normally not a problem, however if you for some reason have password-protected repository&rsquo;s and don&rsquo;t feel like sending your password in clear text over the network for every client/server you kickstart-install, this is going to be a problem.</p>
 
 <p>Luckily there is an easy fix for it &ndash; include the necessary library in the Rhel 6 install.img-file.</p>
@@ -339,9 +339,9 @@ Disabling &ldquo;Legacy fullscreen support&rdquo; since it seems to break xbmc&r
   
   <entry>
     <title type="html"><![CDATA[Fedora 14 – AR8152 Ethernet Controller]]></title>
-    <link href="http://patchon.github.io/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2/"/>
+    <link href="http://blog.fridns.se/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2/"/>
     <updated>2011-01-02T18:53:14+01:00</updated>
-    <id>http://patchon.github.io/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2</id>
+    <id>http://blog.fridns.se/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2</id>
     <content type="html"><![CDATA[<p>If you have a Asus 1215n with the AR8152 Ethernet controller chip you may have noticed that it doesn&rsquo;t work right out of the box, although thanks to this <a href="http://rhythmcloud.blogspot.com/2010/07/how-to-install-ar8151-v10-gigabit.html">blog</a> I managed to get it working. You will notice that the instructions from the blog just mentioned are for fedora 13, and unfortunately there are some differences in the kernel between the releases (2.6.32 &ndash; 2.6.35) that will make the compilation of the driver fail. I&rsquo;ve created a small patch that takes care of this issue, but I leave no guarantees, you&rsquo;re on your own if it doesn&rsquo;t work.</p>
 
 <!--more-->
@@ -381,9 +381,9 @@ I also noticed people were asking questions about how to handle this at kernel u
   
   <entry>
     <title type="html"><![CDATA[Letter to SCM Microsystems]]></title>
-    <link href="http://patchon.github.io/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare/"/>
+    <link href="http://blog.fridns.se/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare/"/>
     <updated>2010-12-28T18:55:36+01:00</updated>
-    <id>http://patchon.github.io/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare</id>
+    <id>http://blog.fridns.se/blog/2010/12/28/hp-elitebook-internal-smartcard-nightmare</id>
     <content type="html"><![CDATA[<p>Figure I would share a letter I wrote to the SCM Microsystem regarding their smart card chipsets, that I believe is found in some of the HP EliteBook models (this is not confirmed, but according to a letter written by HP to a customer, it seems that way, <a href="http://ubuntuforums.org/showthread.php?t=1628040">source</a>) .<a id="more"></a><a id="more-5"></a></p>
 
 <blockquote><p>Hello,<br/>My name is Patrik Martinsson and I&#8217;m currently working as a system administrator at a government funded meteorological institute in Sweden.</p><p>We have a lot of &#8220;Linux-desktop-clients&#8221; in our company (around 1/5 of the employees choose Linux, at least to us that a lot ).</p><p>Somewhere around 2009 we started to use smart card on all our clients to authenticate ourselves, this was a bit of a hassle to get working on the Linux side, but we finally got the clients working as we wanted, with one exception, the internal smart card readers just wouldn&#8217;t work (sadly to say, I wasn&#8217;t that surprised). There was no way to get them working, mostly because we couldn&#8217;t identify them, nobody could really, not even HP support when I called them (not the people I spoke to anyway). So we started to buy &#8220;external&#8221; pcmcia card readers for our Linux users, which was an acceptable solution, not preferred in any way, but acceptable.</p><p>Anyway, today a college of mine stumbled over a letter from HP to a customer that indicates that their models (at least one of them, EliteBook 2540p) has the scr241 chip, and that it is possible to use your kernelmodule (with a small modification, adding their, HP, pcmcia_decvice_prod_id, so your module will recognize it, I&#8217;m not a developer, so please correct me if I&#8217;m wrong) on atleast, HP EliteBook 2540p (my guess is that your chip is other HP models too), to get the internal smart card reader to work.</p><p>Sadly to say, you only have this scr241 driver for Linux available for 32-bit architectures, which to me is a shame, and also a bit surprising, since I noticed that you have all the Windows drivers for both 32 and 64-architectures.</p><p>So, what I ask, and what I really really need from you is your, proprietary driver for the scr241 chip, compiled for a 64 bit architecture (libSCR24x.so.4.2.1), I don&#8217;t ask for any support or anything like that on the driver, I just need it to work on 64-bit architectures so I can test whether we can get our internal readers to work.</p><p>Please, I&#8217;m asking you as a developer to help a sysadmin out!</p><p>Best regards,<br/>Patrik Martinsson</p></blockquote>

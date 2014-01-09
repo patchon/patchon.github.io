@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Fedora 14 | blog.fridns.se]]></title>
-  <link href="http://patchon.github.io/blog/categories/fedora-14/atom.xml" rel="self"/>
-  <link href="http://patchon.github.io/"/>
-  <updated>2014-01-09T18:59:55+01:00</updated>
-  <id>http://patchon.github.io/</id>
+  <link href="http://blog.fridns.se/blog/categories/fedora-14/atom.xml" rel="self"/>
+  <link href="http://blog.fridns.se/"/>
+  <updated>2014-01-09T19:35:01+01:00</updated>
+  <id>http://blog.fridns.se/</id>
   <author>
     <name><![CDATA[Patrik Martinsson]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Free Cache - drop_caches as nonroot]]></title>
-    <link href="http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot/"/>
+    <link href="http://blog.fridns.se/blog/2011/04/22/drop_caches-as-nonroot/"/>
     <updated>2011-04-22T08:38:49+02:00</updated>
-    <id>http://patchon.github.io/blog/2011/04/22/drop_caches-as-nonroot</id>
+    <id>http://blog.fridns.se/blog/2011/04/22/drop_caches-as-nonroot</id>
     <content type="html"><![CDATA[<p>The other day I got a request from a developer at our company regarding drop_caches. You can read about what it is and why it could be useful <a href="http://linux-mm.org/Drop_Caches">here</a>, but to make it short, this person wanted to do some benchmarking and needed the page/inode/dentry cache to be freed. Since this is needed to be done by root, this caused a problem (developer is not root, our infrastructure setup doesn&rsquo;t allow our developers to be root atm). Although I came up with a pretty neet sudo rule that does the job,
 <a id="more"></a><a id="more-142"></a>
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -31,9 +31,9 @@ Just put the above command in <b>/etc/sudoers</b> for affected users and they sh
   
   <entry>
     <title type="html"><![CDATA[Fedora 14 – Flashplayer weird sound issue]]></title>
-    <link href="http://patchon.github.io/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue/"/>
+    <link href="http://blog.fridns.se/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue/"/>
     <updated>2011-01-21T02:48:20+01:00</updated>
-    <id>http://patchon.github.io/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue</id>
+    <id>http://blog.fridns.se/blog/2011/01/21/fedora-14-flashplayer-weird-sound-issue</id>
     <content type="html"><![CDATA[<p>There is a really annoying problem with the flashplayer in Fedora 14 when it comes to playing flashvideos with mp3&rsquo;s in them. You will hear this kind of clipping/high pitched sound which is really unbearable. Luckily there is a quite easy solution, download <a href="https://bugzilla.redhat.com/attachment.cgi?id=460254">this script</a> (Ray Strode, Red Hat) and apply it to your libflashplayer.so, <!--more-->something like</p>
 
 <p><code>bash
@@ -59,9 +59,9 @@ Changing call at offset 0x7ca0bb from [09 3e 8f ff] to [f9 3b 8f ff]
   
   <entry>
     <title type="html"><![CDATA[Fedora 14 – AR8152 Ethernet Controller]]></title>
-    <link href="http://patchon.github.io/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2/"/>
+    <link href="http://blog.fridns.se/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2/"/>
     <updated>2011-01-02T18:53:14+01:00</updated>
-    <id>http://patchon.github.io/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2</id>
+    <id>http://blog.fridns.se/blog/2011/01/02/fedora-14-ar8152-ethernet-controller-2</id>
     <content type="html"><![CDATA[<p>If you have a Asus 1215n with the AR8152 Ethernet controller chip you may have noticed that it doesn&rsquo;t work right out of the box, although thanks to this <a href="http://rhythmcloud.blogspot.com/2010/07/how-to-install-ar8151-v10-gigabit.html">blog</a> I managed to get it working. You will notice that the instructions from the blog just mentioned are for fedora 13, and unfortunately there are some differences in the kernel between the releases (2.6.32 &ndash; 2.6.35) that will make the compilation of the driver fail. I&rsquo;ve created a small patch that takes care of this issue, but I leave no guarantees, you&rsquo;re on your own if it doesn&rsquo;t work.</p>
 
 <!--more-->
