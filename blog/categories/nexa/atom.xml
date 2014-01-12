@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nexa | blog.fridns.se]]></title>
+  <link href="http://blog.fridns.se/blog/categories/nexa/atom.xml" rel="self"/>
+  <link href="http://blog.fridns.se/"/>
+  <updated>2014-01-12T21:36:26+01:00</updated>
+  <id>http://blog.fridns.se/</id>
+  <author>
+    <name><![CDATA[Patrik Martinsson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Automate your lights with Tellstick and Nexa in Fedora 20]]></title>
+    <link href="http://blog.fridns.se/blog/2014/01/12/automate-your-lights-with-tellstick-and-nexa-in-fedora-20/"/>
+    <updated>2014-01-12T17:41:08+01:00</updated>
+    <id>http://blog.fridns.se/blog/2014/01/12/automate-your-lights-with-tellstick-and-nexa-in-fedora-20</id>
+    <content type="html"><![CDATA[<p>In this post I&rsquo;m going to describe the way I have configured my setup to
+automate my bedroom-lights. In this particular setup I use the following
+components,</p>
+
+<ul>
+  <li><a href="http://www.clasohlson.com/se/Inbyggnadsmottagare-universaldimmer-Nexa-WMR-252/36-5271">Nexa WMR252</a>
+  <li><a href="http://www.lohelectronics.se/tellstick-p-135.html">Tellstick</a>
+  <li><a href="http://www.fedoraproject.org">Fedora</a>
+  <li><a href="https://github.com/p3tecracknell/tellprox/">Tellprox</a>
+</ul>
+
+
+<p>The goal of the setup is to automate the lights so that they can be turned
+on in the morning, I imagine that if I wake up to a light instead of a buzzer
+I will be in a better mood and it will be easier for me to get up. The other
+goal is to be able to control the lights from my phone.</p>
+
+<!--more-->
+
+
+<p>So the first thing is obviously to attach the tellstick to your computer,
+after it&rsquo;s been attached look for something like this in your <strong>dmesg</strong>,
+<code>bash
+[1199357.989893] usb 1-1.1: new full-speed USB device number 12 using ehci-pci
+[1199358.081310] usb 1-1.1: New USB device found, idVendor=1781, idProduct=0c30
+[1199358.081313] usb 1-1.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[1199358.081314] usb 1-1.1: Product: TellStick
+[1199358.081316] usb 1-1.1: Manufacturer: Telldus
+[1199358.081317] usb 1-1.1: SerialNumber: A7029QUB
+[1199358.128916] usbcore: registered new interface driver ftdi_sio
+[1199358.128926] usbserial: USB Serial support registered for FTDI USB Serial Device
+[1199358.128991] ftdi_sio 1-1.1:1.0: FTDI USB Serial Device converter detected
+[1199358.129009] usb 1-1.1: Detected FT232RL
+[1199358.129010] usb 1-1.1: Number of endpoints 2
+[1199358.129012] usb 1-1.1: Endpoint 1 MaxPacketSize 64
+[1199358.129013] usb 1-1.1: Endpoint 2 MaxPacketSize 64
+[1199358.129014] usb 1-1.1: Setting MaxPacketSize 64
+[1199358.129427] usb 1-1.1: FTDI USB Serial Device converter now attached to ttyUSB0
+</code></p>
+
+<p>That&rsquo;s basically the kernel telling you that it has found the device you just inserted
+and attached it to <strong>/dev/ttyUSB0</strong>. If you don&rsquo;t see this in your log,
+then you have issues that&rsquo;s beyond the scope of this article, sorry ;)</p>
+
+<p>Assuming that the device actually was found, we continue with downloading, building and
+installing the telldus-core,
+``` bash</p>
+
+<h1>Make sure you have necessary tools/libs,</h1>
+
+<p>sudo yum groupinstall &ldquo;Development Tools&rdquo; &ldquo;C Development Tools and Libraries&rdquo;
+sudo yum install libconfuse-devel libftdi-devel cmake</p>
+
+<h1>Download telldus-core,</h1>
+
+<p>cd /tmp/
+wget <a href="http://download.telldus.se/TellStick/Software/telldus-core/telldus-core-2.1.1.tar.gz">http://download.telldus.se/TellStick/Software/telldus-core/telldus-core-2.1.1.tar.gz</a>
+tar xvfp telldus-core-2.1.1.tar.gz
+cd telldus-core-2.1.1/</p>
+
+<h1>Patch Socket.h since it needs to include unistd.h,</h1>
+
+<p>sed -i &lsquo;/#include <string>/a #include &lt;unistd.h>&rsquo; common/Socket.h</p>
+
+<h1>Build it and install the telldus-core,</h1>
+
+<p>cmake
+make
+sudo make install
+```</p>
+
+<p>If you get any errors above while build the telldus-core, you should be able to find
+the culprit by looking at the error-message, hopefully it will make some sense (or not,
+you never know, however I&rsquo;ve done these exact steps on a clean install of Fedora 20 so
+it would surprise me if it failed for you if you&rsquo;re in the same environment).</p>
+
+<p>Since telldus puts its beloved libtelldus-core.so.2 under /usr/local/lib (even though it&rsquo;s
+64bit in my case), you have some options</p>
+
+<ul>
+  <li> Make ldconfig pick up libs under /usr/local/lib by creating a usr-local.conf under 
+  /etc/ld.so.conf.d/ with the path /usr/local/lib in it (or even better, move the libs to 
+  /usr/local/lib64 and include that path instead, since it's a 64bit system). 
+  <li> Make a symbolic in /usr/lib64 that points to /usr/local/lib/libtelldus-core.so.2.1.1
+</ul>
+
+
+<p>Personally I took the easy way out by creating a symlink,
+``` bash</p>
+
+<h1>Create a link,</h1>
+
+<p>sudo ln -s /usr/lib64/libtelldus-core.so.2 /usr/local/lib/libtelldus-core.so.2.1.1</p>
+
+<h1>Whichever method you prefer, make sure the lib is available, you can check it with</h1>
+
+<p>ldd /usr/local/bin/tdtool</p>
+
+<blockquote><p>linux-vdso.so.1 =>  (0x00007fffb63fe000)
+libtelldus-core.so.2 => /lib64/libtelldus-core.so.2 (0x00007fd9482c2000)
+libstdc++.so.6 => /lib64/libstdc++.so.6 (0x00007fd947fba000)
+libm.so.6 => /lib64/libm.so.6 (0x00007fd947cb2000)
+etc..</p></blockquote>
+
+<h1>If the line that says &ldquo;libtelldus-core.so.2&rdquo; does say &ldquo;Not found&rdquo;, you are doing something</h1>
+
+<h1>wrong. Try again (you need to run sudo ldconfig, if you&rsquo;re choosing the first method).</h1>
+
+<p>```</p>
+
+<p>Go on with configuring the telldus-core so we can connect it to our <b>Nexa-WMR-252</b>,
+``` bash</p>
+
+<h1>Edit the config-file with your favorite editor,</h1>
+
+<p>sudo gvim /etc/tellstick.conf</p>
+
+<h1>My config looks like this, but of course this could differ depending on your setup,</h1>
+
+<h1>&mdash;&ndash; Start &mdash;&ndash;</h1>
+
+<p>user = &ldquo;nobody&rdquo;
+group = &ldquo;plugdev&rdquo;
+ignoreControllerConfirmation = &ldquo;false&rdquo;
+deviceNode = &ldquo;/dev/ttyUSB0&rdquo;
+device {
+  id = 1</p>
+
+<pre><code>name = "Dimmer bedroom"
+protocol = "arctech"
+model = "selflearning-dimmer"
+parameters {
+  house = "123456" # This is the code that the nexa-reciever will learn, 
+  unit = "1"
+}
+</code></pre>
+
+<p>}</p>
+
+<h1>&mdash;&ndash; End &mdash;&ndash;</h1>
+
+<p>```</p>
+
+<p>Now, it&rsquo;s time to get the things going,
+``` bash</p>
+
+<h1>First step is to start the telldus-core-daemon,</h1>
+
+<p>sudo telldusd
+```</p>
+
+<p>Next step is to learn the nexa our &ldquo;code&rdquo;, press the little button under the
+red-diode to put the Nexa-WMR-252 in &ldquo;self-learning-mode&rdquo;, then type the command below, <br><br>
+<strong>Notes,</strong></p>
+
+<ul>
+  <li>The lights must be off when doing this. 
+  <li>The "self-learning-mode" lasts for 12 seconds, that means you have to continue with 
+      the "learning-step" (tdtool --learn 1) <strong>before</strong> the 12 seconds runs out. The red 
+      diode will blink as long as the nexa is in the "self-learning-mode". Once it receives
+      the code it will dim on and off the lights. 
+</ul>
+
+
+<p>```</p>
+
+<h1>First, make sure that you have your devices configured properly,</h1>
+
+<p>tdtool -l</p>
+
+<blockquote><p>Number of devices: 1
+1 Dimmer bedroom  OFF</p></blockquote>
+
+<h1>If no devices are listed above, go back and make sure that telldusd is started</h1>
+
+<h1>correctly, you can get some debug from the daemon by appending the &mdash;nodaemon-flag</h1>
+
+<h1>to it.</h1>
+
+<h1>Use the tdtool to learn the nexadevice the code,</h1>
+
+<p>tdtool &mdash;learn 1</p>
+
+<blockquote><p>Learning device: 1 Dimmer bedroom &ndash; Success
+```</p></blockquote>
+
+<p>Awesomeness, now we can do all sorts of fun stuff,
+```</p>
+
+<h1>Turn the dimmers on,</h1>
+
+<p>tdtool &mdash;on 1</p>
+
+<blockquote><p>Turning on device 1, Dimmer bedroom &ndash; Success</p></blockquote>
+
+<h1>Turn the dimmers off,</h1>
+
+<p>tdtool &mdash;off 1</p>
+
+<blockquote><p>Turning on device 1, Dimmer bedroom &ndash; Success</p></blockquote>
+
+<h1>Set a specific dim-level,</h1>
+
+<p>tdtool &mdash;dimlevel 25 &mdash;dim 1</p>
+
+<h1>Why not go all the way,</h1>
+
+<p>for i in $(seq 10 10 250)
+do
+  tdtool &mdash;dimlevel $i &mdash;dim 1
+done
+for i in $(seq 250 -10 10)
+do
+  tdtool &mdash;dimlevel $i &mdash;dim 1
+done
+```</p>
+
+<p>To control my lights through my phone I use the tellprox, found <a href="https://github.com/p3tecracknell/tellprox">here</a>.
+This is a local server that you can use if you don&rsquo;t want to use the
+&ldquo;tellstick-live-cloud&rdquo;-thingie, which fits me perfect.
+```</p>
+
+<h1>Make sure you have git installed,</h1>
+
+<p>sudo yum install git</p>
+
+<h1>Clone the tellprox-repo,</h1>
+
+<p>cd ~/bin/
+git clone <a href="https://github.com/p3tecracknell/tellprox">https://github.com/p3tecracknell/tellprox</a></p>
+
+<h1>Edit the configuration for our needs,</h1>
+
+<p>gvim config.ini</p>
+
+<h1>My config looks like this,</h1>
+
+<h1>&mdash;&ndash; Start &mdash;&ndash;</h1>
+
+<p>host = localhost
+port = 8081
+debug = False
+editable = False
+client_name = TellProx
+client_id = 1
+pretty_print = False
+timezone = Europe/London
+latitude = 51.4500007629
+longitude = -2.58330011368
+tzoffset = 3600
+webroot = &ldquo;&rdquo;
+username =
+password =
+apikey = &ldquo;&rdquo;
+[sensors]</p>
+
+<h1>&mdash;&ndash; End &mdash;&ndash;</h1>
+
+<h1>Save the config above and start the tellprox,</h1>
+
+<p>python -m tellprox</p>
+
+<blockquote><p>Bottle v0.11.6 server starting up (using CherryPyServer())&hellip;
+Listening on <a href="http://localhost:8081/">http://localhost:8081/</a>
+Hit Ctrl-C to quit.</p></blockquote>
+
+<h1>Note, config.ini should be in the directory from where you are starting tellprox,</h1>
+
+<p>```</p>
+
+<p>Open up a web browser and point it to <a href="http://localhost:8081">http://localhost:8081</a> and you should
+see the &ldquo;Dimmer bedroom&rdquo;-device there.</p>
+
+<p>Lastly I want to be able to control this from my phone, and since I don&rsquo;t
+have a &ldquo;local network&rdquo; at home, I need to be able to reach it from the &ldquo;internet&rdquo;.
+Since there is no basic authentication implemented yet in tellprox (or at least
+I can&rsquo;t seem to get it to work, I&rsquo;ll use an apache instance with basic auth infront
+of tellprox).
+```</p>
+
+<h1>Install apache,</h1>
+
+<p>sudo yum install httpd</p>
+
+<h1>Enable it,</h1>
+
+<p>sudo systemctl enable httpd</p>
+
+<h1>Configure it,</h1>
+
+<p>sudo gvim /etc/httpd/conf.d/tellprox.conf</p>
+
+<h1>My config looks like this, since we are sending passwords you should be using</h1>
+
+<h1>ssl (there are tons of guides on how to generate your own self-signed-certificate),</h1>
+
+<h1>&mdash;&ndash; Start &mdash;&ndash;</h1>
+
+<p>Listen xxxx.xx.xx:8082
+<VirtualHost *:8082>
+  SSLEngine on
+  SSLProxyEngine On
+  SSLCertificateFile  /path-your-certificate
+  SSLCertificateKeyFile /path-to-your-key
+  SSLProxyCheckPeerName off
+  SSLProxyCheckPeerCN off</p>
+
+<p>  <Location /></p>
+
+<pre><code>AuthType Basic
+AuthName "You're not controlling my bedroom-lights!"
+AuthUserFile /etc/httpd/conf.d/passwords
+Require user xxx
+</code></pre>
+
+<p>  </Location></p>
+
+<p>  # Proxy to tellprox,
+  ProxyPass / <a href="http://localhost:8081/">http://localhost:8081/</a>
+  ProxyPassReverse / <a href="http://localhost:8081/">http://localhost:8081/</a></p>
+
+<p>  # Possible values include: debug, info, notice, warn, error, crit, alert, emerg.
+  LogLevel info
+  ErrorLog /var/log/httpd/tellprox-error.log
+  CustomLog /var/log/httpd/tellprox-access.log combined
+</VirtualHost></p>
+
+<h1>&mdash;&ndash; End &mdash;&ndash;</h1>
+
+<h1>Create a password for myuser,</h1>
+
+<p>sudo htpasswd -c /etc/httpd/conf.d/passwords myuser</p>
+
+<h1>To allow us to use port 8082 we need</h1>
+
+<h1>Since the port 8082 isn&rsquo;t a pre-configured port for a webserver, we need to manually</h1>
+
+<h1>add with semanage, otherwise selinux will prevent us from listening on that particular</h1>
+
+<h1>port,</h1>
+
+<p>sudo semanage port -a -t http_port_t -p tcp 8082</p>
+
+<h1>Start the webserver,</h1>
+
+<p>sudo systemctl start httpd
+```</p>
+
+<p>Lastly, we make sure that this will keep working after a reboot, and we also set up a
+small crontab-job for making the lights turn on in the morning,
+```</p>
+
+<h1>Since I&rsquo;m quite lazy, I choose the rc.local-way of starting things at boot,</h1>
+
+<h1>but yes, I know, there are &ldquo;better&rdquo; (define better) ways of doing this.</h1>
+
+<h1>But again, this is simple and doesn&rsquo;t require much,</h1>
+
+<h1>Enable rc.local at boot,</h1>
+
+<p>sudo systemctl enable rc-local.service</p>
+
+<h1>Create a /etc/rc.d/rc.local,</h1>
+
+<p>sudo gvim /etc/rc.d/rc.local</p>
+
+<h1>&mdash;&ndash; Start &mdash;&ndash;</h1>
+
+<h1>!/bin/bash</h1>
+
+<h1>Start the telldus-core-daemon,</h1>
+
+<p>/usr/local/sbin/telldusd</p>
+
+<h1>Start our tellprox, maybe not the most beutiful you have seen, bit it works for me, for now,</h1>
+
+<p>sudo -u myuser bash -c &ldquo;cd /home/myuser/bin/tellprox &amp;&amp; python -m tellprox&rdquo; &amp;</p>
+
+<h1>&mdash;&ndash; End &mdash;&ndash;</h1>
+
+<h1>Then make a small script,</h1>
+
+<p>gvim ~/bin/turnonbedroomlights.sh</p>
+
+<h1>&mdash;&ndash; Start &mdash;&ndash;</h1>
+
+<h1>!/bin/bash</h1>
+
+<p>for i in $(seq 10 10 250)
+do
+  tdtool &mdash;dimlevel $i &mdash;dim 1
+done</p>
+
+<h1>&mdash;&ndash; End &mdash;&ndash;</h1>
+
+<h1>Make it executable,</h1>
+
+<p>chmod +x ~/bin/turnonbedroomlights.sh</p>
+
+<h1>Add a crontab-entry making the lights go on every morning at 6:30,</h1>
+
+<p>crontab -e</p>
+
+<h1>Every weekday morning,</h1>
+
+<p>30 06 * * 1-5 /home/username/bin/turnonbedroomlights.sh
+```</p>
+
+<p>And there you have it, enjoy !<br></p>
+
+<ul>
+  <li> Automatically turn on my lights in the morning. 
+  <li> Control them from my phone 
+</ul>
+
+
+<p>Comments, suggestions and questions are welcome!</p>
+]]></content>
+  </entry>
+  
+</feed>
