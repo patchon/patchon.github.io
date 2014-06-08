@@ -229,7 +229,7 @@ div.fancybox-title.fancybox-title-inside-wrap {
     of the code is 'just-making-sure-the-stars-are-aligned' whereas the other 10%
     is actual api-calls.<br>
     <span style="font-weight:bold">Language(s)</span><br>
-    - Perl / 'Some nasty system-calls'<br> 
+    - Perl <br> 
     <span style="font-weight:bold">Api's / Techniques </span><br>
     - Foreman / Hiera / Infoblox / JSON / LDAP / Monitor / Regular Expressions
       / REST / SVN / VMware 
@@ -237,20 +237,55 @@ div.fancybox-title.fancybox-title-inside-wrap {
 
   <div id="title-3" class="hidden">
     <span style="font-weight:bold">Short Description,</span><br>
-    This is roughly ~500k lines of bash that will do summarize all the weekly 
+    This is roughly ~500 lines of bash that will do summarize all the weekly 
     downloaded patches. It will tell the developers which patches are installed 
     in which environment. It will do so by collecting installed rpm's through 
     snpm and compare them with the downloaded patches. <br>
     <span style="font-weight:bold">Language(s)</span><br>
-    - Ajax / Bash / Html / Jquery <br> 
+    - Bash <br> 
     <span style="font-weight:bold">Api's / Techniques </span><br>
     SNMP 
+  </div>
+
+  <div id="title-5" class="hidden">
+    <span style="font-weight:bold">Short Description,</span><br>
+    This is roughly ~1k lines of perl-code that will query the 'CA ServiceDesk'-
+    product through its webservices. It will gather Incidents / Changeorders /
+    Request / Tasks for specified group within specified period and display it 
+    in a nicely column-based-format (there is no way of doing this within their
+    own gui/product, not this cleanly anyway).<br>
+    <span style="font-weight:bold">Language(s)</span><br>
+    - Perl <br> 
+    <span style="font-weight:bold">Api's / Techniques </span><br>
+    CA ServiceDesk Webservices (SOAP) / XML 
+  </div>
+
+  <div id="title-4" class="hidden">
+    <span style="font-weight:bold">Short Description,</span><br>
+    This is roughly ~500 lines of perl-code that will do various 
+    Infoblox-operations, such as, add / remove A/CNAME-records within specified 
+    VLAN. <br>
+    <span style="font-weight:bold">Language(s)</span><br>
+    - Perl <br> 
+    <span style="font-weight:bold">Api's / Techniques </span><br>
+    Infoblox
+  </div>
+
+  <div id="title-6" class="hidden">
+    <span style="font-weight:bold">Short Description,</span><br>
+    This is roughly ~300 lines of perl-code that will reconfigure vmware-servers
+    through vSphere-api. It will allow you to reconfigure the servers CPU / RAM,
+    and / or tell you how the server is configured. 
+    <span style="font-weight:bold">Language(s)</span><br>
+    - Perl <br> 
+    <span style="font-weight:bold">Api's / Techniques </span><br>
+    VMware / vSphere 
   </div>
 
   <center>
     <table>
       <tr style="text-align:center">
-        <td><a data-title-id="title-5" class="fancybox" rel="group" href="ca.png">CA Technologies<br><img class="foa" src="ca2.png" alt="Clean interface to CA ServiceDesk"/></a>
+        <td><a data-title-id="title-5" class="fancybox" rel="group" href="ca.png">CA Technologies<br><img class="foa" src="ca.png" alt="Clean interface to CA ServiceDesk"/></a>
             <a data-title-id="title-5" class="fancybox" rel="group" href="ca2.png" style="display:none;"></a></td>
         <td><a data-title-id="title-1" class="fancybox" rel="group" href="inventory.png" title="">Inventory<br><img class="foa" src="inventory.png" alt="Inventory Script"/></a></td>
         <td><a data-title-id="title-4" class="fancybox" rel="group" href="ib.png" title="">Infoblox<br><img class="foa" src="ib.png" alt="Infoblox add/remove records"/></a></td>
