@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SanFran Game</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+//  # Now that you know my fauvorite programming language, the best init deameon ever made, one of the most beautiful mathematical sequences, a really good movie,
+
+
+
+$(document).ready(function(){
+
+  $("#button").attr("disabled", "disabled");
+  cnt=1;
+
+  $('#button').click(function() {
+    check();
+  });
+
+  $('#myform').submit(function(){
+    console.log("here");
+    check();
+    return false;
+  });
+
+  $('.radio').click(function() {
+    $("#button").removeAttr("disabled");
+  });
+
+  $('.f').click(function() {
+    $("#button").removeAttr("disabled");
+  });
+
+  $('#f1').click(function() {
+    $("#r1").prop("checked", true);
+  });
+  $('#f2').click(function() {
+    $("#r2").prop("checked", true);
+  });
+  $('#f3').click(function() {
+    $("#r3").prop("checked", true);
+  });
+  $('#f4').click(function() {
+    $("#r4").prop("checked", true);
+  });
+
+
+  function hide_yey(){
+    $('.yey').hide();
+  }
+
+  function up_count(){
+    $("#button").attr("disabled", "disabled");
+    $('.radio').prop('checked', false);
+    $( ".yey" ).fadeOut( "slow", function() {});
+
+    $("#q"+cnt).hide();
+    $("#t"+cnt).hide();
+
+    cnt++;
+
+    $("#q"+cnt).show();
+    $("#t"+cnt).show();
+
+    if (cnt === 1){
+    }
+
+    if (cnt === 2){
+      //$('#progress').css('width','14%')
+      //$('#progress').html('width','14%')
+      str1="Enables the nginx service";
+      str2="Enables the nginx service via systemd and immediatly starts it";
+      str3="Checks for startup messages in nginx's journal";
+      str4="Open up the firewall for nginx (port 80/tcp, 443/tcp)";
+      $("#f1").html(str1);
+      $("#f2").html(str2);
+      $("#f3").html(str3);
+      $("#f4").html(str4);
+    }
+    if (cnt === 3){
+      //$('#progress').css('width','28%')
+      str1="A sequence of prime numbers";
+      str2="The Farey sequence";
+      str3="The look-and-say-sequence";
+      str4="The fibonacci sequence";
+      $("#f1").html(str1);
+      $("#f2").html(str2);
+      $("#f3").html(str3);
+      $("#f4").html(str4);
+    }
+    if (cnt === 4){
+      str1="Good Will Hunting";
+      str2="Pi";
+      str3="The Imitation Game";
+      str4="The theory of everything";
+      $("#f1").html(str1);
+      $("#f2").html(str2);
+      $("#f3").html(str3);
+      $("#f4").html(str4);
+    }
+    if (cnt === 5){
+      str1="It is a flag to the gcc compiler";
+      str2="It is an environment variable that can be used to load a custom shared object *before* the default / intended ones";
+      str3="It is an enviroment variable that sets the colors of the 'ls-command";
+      str4="It is not specified variable at all and doesn't do anything unless you define it";
+      $("#f1").html(str1);
+      $("#f2").html(str2);
+      $("#f3").html(str3);
+      $("#f4").html(str4);
+    }
+    if (cnt === 6){
+      str1="Linus Thorvalds";
+      str2="Theodore Ts'o";
+      str3="Lennart Poettering";
+      str4="Matthew Garret";
+      $("#f1").html(str1);
+      $("#f2").html(str2);
+      $("#f3").html(str3);
+      $("#f4").html(str4);
+    }
+    if (cnt === 7){
+      str1="Patrik";
+      $("#f1").html(str1);
+      $("#f2").hide();
+      $("#f3").hide();
+      $("#f4").hide();
+      $("#r2").hide();
+      $("#r3").hide();
+      $("#r4").hide();
+    }
+
+    if (cnt === 8){
+      $("#f1").hide();
+      $("#f2").hide();
+      $("#f3").hide();
+      $("#f4").hide();
+      $("#r1").hide();
+      $("#r2").hide();
+      $("#r3").hide();
+      $("#r4").hide();
+      $("#last").show();
+      $( ".yeyy" ).fadeIn( "slow", function() {});
+    }
+
+
+  }
+
+  function move(to) {
+    $('#progress').css('background-color','')
+    var elem = document.getElementById("progress");
+    var width = $('#progress').html().charAt(0)+1;
+    console.log(width);
+    var id = setInterval(frame, 20);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+          if (width >= to) {
+            return
+          }
+            width++;
+            elem.style.width = width + '%';
+            $('#progress').html(width+'%');
+        }
+    }
+  }
+
+  function right() {
+    $( ".ney" ).fadeOut( "slow", function() {});
+    $( ".yey" ).fadeIn( "slow", function() {});
+    setTimeout(up_count, 1500);
+  }
+
+  function hide_ney() {
+    $( ".ney" ).fadeOut( "slow", function() {});
+  }
+
+  function check(question){
+
+    var answer = $('input[name=question]:checked').val();
+    console.log("you selected "+answer+"cnt "+cnt);
+
+    if (cnt === 1 && answer == 3){
+        move(14);
+        right();
+        return;
+    }
+
+    if (cnt === 2 && answer == 2){
+        move(30);
+        right();
+        return;
+    }
+
+    if (cnt === 3 && answer == 4){
+        move(45);
+        right();
+        return;
+    }
+
+    if (cnt === 4 && answer == 1){
+        move(60);
+        right();
+        return;
+    }
+
+    if (cnt === 5 && answer == 2){
+        move(75);
+        right();
+        return;
+    }
+
+    if (cnt === 6 && answer == 3){
+        move(90);
+        right();
+        return;
+    }
+
+    if (cnt === 7){
+        move(100);
+        right();
+        return;
+    }
+
+    if (cnt === 8){
+        right();
+        return;
+    }
+
+    console.log("ney");
+    $( ".ney" ).fadeIn( "slow", function() {});
+    setTimeout(hide_ney, 3000);
+  }
+
+});
+
+</script>
+</head>
+
+<style>
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 96%;
+}
+
+.w3-green {
+color: #000!important;
+}
+
+.f {
+cursor: pointer;
+}
+.center-div {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 70%;
+  height: 50%;
+  background: #efefef;
+  border-radius: 15px;
+  border: dotted 1px #828282;
+  padding: 15px;
+}
+
+.yey {
+  position: absolute;
+  bottom: 0;
+  z-index: 99999;
+  display: none;
+}
+
+.yeyy {
+  position: absolute;
+  bottom: 0;
+  right:200px;
+  padding-right:10px;
+  z-index: 99999;
+  display: none;
+}
+
+.ney {
+  position: absolute;
+  bottom: 0;
+  right:0;
+    padding-right:10px;
+  z-index: 99999;
+    display:none
+}
+
+.intro{
+  font-size: 120%;
+  font-weight: bold;
+  padding: 15px;
+}
+.intro-text{
+  padding-left: 15px;
+}
+
+.btn {
+  border: 2px solid black;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: #4CAF50;
+  color: green;
+  border-radius: 15px;
+  background: #f1f1f1;
+}
+
+/* Green */
+.success {
+  border-color: #4CAF50;
+  color: green;
+}
+
+.success:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+  .indent {
+    padding-left:15px;
+  }
+
+
+</style>
+
+<body>
+
+<div class=intro>
+  Welcome Nadia !
+</div>
+<div class=intro-text>
+  This is a simple game to get your attention.<br>
+  If you answer all the questions questions correctly there will be a surprice in the end.
+</div>
+
+
+<div class=center-div>
+<img src=bitm.png width=110px class=yey></img>
+<img src=bitm2.png width=110px class=ney></img>
+<img src=bitm3.png width=350px class=yeyy></img>
+<div id=t1><p><b>Question # 1 : </b> What does the following c-code snippet produce ? </p></div>
+
+  <!-- Question 1 -->
+  <div id=q1 style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+  <span style="color: #BC7A00">#include&lt;stdio.h&gt;</span>
+
+  <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(){
+  <span style="color: #B00040">int</span> a,b;
+  <span style="color: #B00040">char</span> <span style="color: #666666">*</span>s <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;Patrik has an &quot;</span>;
+  <span style="color: #B00040">char</span> <span style="color: #666666">*</span>f <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;hour flight ahead of him.&quot;</span>;
+
+  a <span style="color: #666666">=</span> <span style="color: #666666">6</span>;
+  b <span style="color: #666666">=</span> a <span style="color: #666666">+</span> <span style="color: #666666">5</span>;
+  <span style="color: #666666">*</span>s <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;Y&#39;</span>;
+
+  printf(<span style="color: #BA2121">&quot;%s %i %s</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>,s,b,f);
+}
+  </pre>
+  </div>
+  <!-- End Question 1 -->
+
+  <!-- Question 2 -->
+  <div id=t2 style="display:none"><p><b>Question # 2 : </b> What does the following command do ? </p></div>
+  <div id=q2 style="display:none; background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">sudo systemctl <span style="color: #008000">enable</span> --start nginx
+</pre></div>
+  <!-- End Question 2 -->
+
+  <!-- Question 3 -->
+  <div id=t3 style="display:none"><p><b>Question # 3 : </b> What mathematical sequence will the following code snippet produce ? </p></div>
+  <div id=q3 style="display:none; background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<span style="color: #19177C">f</span><span style="color: #666666">=</span>0
+<span style="color: #19177C">s</span><span style="color: #666666">=</span>1
+<span style="color: #19177C">max</span><span style="color: #666666">=</span>20
+
+<span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">((</span> <span style="color: #19177C">i</span><span style="color: #666666">=</span>0; i&lt;<span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">max</span><span style="color: #008000; font-weight: bold">}</span>; i++ <span style="color: #666666">))</span>
+<span style="color: #008000; font-weight: bold">do</span>
+<span style="color: #008000; font-weight: bold">  </span><span style="color: #008000">echo</span> -n <span style="color: #BA2121">&quot;$f &quot;</span>
+  <span style="color: #19177C">fn</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$((</span>f <span style="color: #666666">+</span> s<span style="color: #008000; font-weight: bold">))</span>
+  <span style="color: #19177C">f</span><span style="color: #666666">=</span><span style="color: #19177C">$s</span>
+  <span style="color: #19177C">s</span><span style="color: #666666">=</span><span style="color: #19177C">$fn</span>
+<span style="color: #008000; font-weight: bold">done</span>
+</pre></div>
+  <!-- End Question 3 -->
+
+  <!-- Question 4 -->
+  <div id=t4 style="display:none"><p><b>Question # 4 : </b> In which movie does a young janitor solve a problem that could be described as 'find all homeomorphically irreducible trees of degree ten (i.e ten nodes)' ? </p></div>
+  <!-- End Question 4 -->
+
+  <!-- Question 5 -->
+  <div id=t5 style="display:none"><p><b>Question # 5 : </b> Which of the following alterenatives is true about <strong>LD_PRELOAD</strong> ? </p></div>
+  <!-- End Question 5 -->
+
+  <!-- Question 6 -->
+  <div id=t6 style="display:none"><p><b>Question # 6 : </b> Who is the author of systemd whom I almost took a selfie with ? </p></div>
+  <!-- End Question 6 -->
+
+  <!-- Question 7 -->
+  <div id=t7 style="display:none"><p><b>Question # 7 : </b> Who got way to drunk at <strong>Sam's Cable Car Lounge</strong> and ended up paying the bar tab for everyone when Keith bailed (and woke up with way less money than intended) ? </p></div>
+  <!-- End Question 7 -->
+
+
+<br>
+<div id=last style="display:none">
+  <strong>Yey, you made the nerd quiz !<br></strong>
+  Now you know,<p>
+  <li class=indent>My favorite programming language </li>
+  <li class=indent>A beautiful mathematical sequence </li>
+  <li class=indent>The best initd-system ever made and my admiration for Lennart Poettering</li>
+  <li class=indent>One of the greatest movies ever made</li>
+  <li class=indent>An hidden but awesome feature on how to override shared libraries</li><p>
+
+  Please let me cook you dinner while you tell me more about yourself and your interests (nerdy or not).
+
+
+
+
+</div>
+
+<form id="myform" action="">
+  <input class="radio" id=r1 type="radio" name="question" value="1"> <div class=f id=f1 style="display:inline">The program will produce the output 'Patrik has an 11 hour flight ahead of him.'</div><br>
+  <input class="radio" id=r2 type="radio" name="question" value="2"> <div class=f id=f2 style="display:inline">The program won't compile due to syntax error.</div><br>
+  <input class="radio" id=r3 type="radio" name="question" value="3"> <div class=f id=f3 style="display:inline">The program will most likely cause a segmentation fault due to undefined behaviour according to the ANSI C standard.</div><br>
+  <input class="radio" id=r4 type="radio" name="question" value="4"> <div class=f id=f4 style="display:inline">The program will wont produce due to missing parameters to the printf-function.</div>
+</form>
+
+<div>
+  <br><br>
+  <center><button class="btn success" id="button">Next</button></center>
+</div>
+
+
+</div>
+<br><br>
+  <div class="w3-light-grey w3-round" style="width:26%;margin:auto">
+    <div id=progress class="w3-container w3-green w3-round" style="width:0%;background-color:#f2f2f2!important">0%</div>
+  </div><br>
+
+
+
+
+
+</body>
+</html>
