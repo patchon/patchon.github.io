@@ -72,7 +72,7 @@
     // show number of correct answers out of total
 
     if (numCorrect === 7){
-      resultsContainer.innerHTML = `Yey, all answers correct, here's the number 0707 - 27 64 96.`;
+      resultsContainer.innerHTML = `Yey, all answers correct, here's the number whatsapp number 0707 - 27 64 96.`;
     }else{
       resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
     }
